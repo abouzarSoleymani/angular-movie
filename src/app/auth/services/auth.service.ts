@@ -22,17 +22,23 @@ export class AuthService {
     const user: User = {
       username, password
     }
-    user.role = username === 'test' ? Role.USER : Role.ADMIN;
+    user.role = username === 'admin' ? Role.ADMIN : Role.USER
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject$.next(user);
     return of(user)
   }
 
-  getUserInfo(): Observable<User> {
-    return  this.currentUserSubject$.asObservable();
+  getUserInfo(): User {
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
-  logout() {
+  logout(): void {
     localStorage.removeItem('currentUser');
     this.currentUserSubject$.next(null);
+  }
+  isAuthenticated(): boolean {
+    return !!this.getUserInfo();
+  }
+  isAdmin(): boolean {
+    return this.getUserInfo().role  === Role.ADMIN;
   }
 }

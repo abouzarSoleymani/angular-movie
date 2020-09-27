@@ -1,0 +1,19 @@
+
+.bg-dark{
+  background: #699500 !important;
+}
+.nav-link {
+  font-size: 12px;
+}
+.navbar-brand {
+  color: #C0C0C0 !important;
+}
+.navbar-dark {
+  .navbar-nav {
+    .nav-link {
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
